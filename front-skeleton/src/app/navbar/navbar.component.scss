@@ -1,40 +1,35 @@
 @use "theme";
 
 nav {
-  height: 80px;
-  background: linear-gradient(to right, theme.$common-purple, theme.$common-red);
-
-  div {
-    height: 100%;
-    display: flex;
-    align-items: center;
-
-    img {
-      margin-left: 20px;
-      height: 60px;
-      transition: 0.3s;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-    }
-  }
+  height: 65px;
+  background: #3A1C71;
+  background: -webkit-linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
+  background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
 }
 
 mat-nav-list {
-  margin-left: 50px;
+  margin-left: 450px;
   display: flex;
   flex-direction: row;
-  width: 250px;
+  width: 400px;
+}
 
-  span,
-  a {
-    font-size: large;
-    color: theme.$white;
-    transition: 0.3s;
+mat-nav-list a {
+  font-size: large;
+  color: theme.$white;
+  transition: 0.3s;
+}
 
-    &:hover {
-      transform: scale(1.2);
-    }
-  }
+.accueil button.accueil-button,
+.admin button.admin-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  transition: 0.3s;
+  margin-right: 400px;
+}
+
+.accueil button.accueil-button:hover,
+.admin button.admin-button:hover {
+  transform: scale(1.2);
 }

@@ -4,7 +4,6 @@
   align-items: center;
   margin: 25px;
   flex-direction: column;
-
   .title {
     font-family: Caveat, sans-serif;
     font-size: 4.5em;
@@ -30,6 +29,7 @@
       height: 64%;
       width: 68%;
       margin-left: 20px;
+      cursor: pointer;
     }
 
     .card-text {
@@ -39,6 +39,10 @@
       line-height: 1.7;
       max-width: 400px;
       margin-left: 15px;
+      cursor: pointer;
+      text-decoration: underline;
+      color: blue;
+
     }
   }
 }

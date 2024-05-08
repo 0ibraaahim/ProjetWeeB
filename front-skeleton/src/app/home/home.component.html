@@ -1,28 +1,35 @@
 <span class="title">Bonjour à vous !</span>
 <div>
-  <span class="welcome">Bienvenue sur ce super template de code Angular </span>
+  <span class="welcome">Découvrez les quizs disponibles</span>
   <img src="assets/sun.gif" height="100">
 </div>
-<span class="title">Qu'est ce que vous allez faire pendant ce cours ?</span>
+
+<span class="title">Testez vos compétences ! </span>
 <div class="card-group">
   <div class="card">
-    <img class="card-img-top" src="assets/img1.png" alt="Card image cap" />
-    <div class="card-body">
-      <p class="card-text">
-        Une merveilleuse web app from scratch JAVA Spring - Angular
-      </p>
+    <div [routerLink]="'/math'" routerLinkActive="active" class="math">
+      <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZgj3XpVD-Rq7Ssiu6TU4mN89GJlUbrwJXdG5bGCFuFw&s" alt="Card image cap" />
+      <div class="card-body">
+        <p class="card-text">
+          Quiz en mathématiques
+        </p>
+      </div>
     </div>
   </div>
   <div class="card">
-    <img class="card-img-top" src="assets/img2.png" alt="Card image cap" />
-    <div class="card-body">
-      <p class="card-text">Avec une super team de 3 ou 4 personnes</p>
+    <div [routerLink]="'/histoire'" routerLinkActive="active" class="histoire">
+      <img class="card-img-top" src="https://data.topquizz.com/distant/quizz/big/4/7/9/3/233974_9181cc6885.jpg" alt="Card image cap" />
+      <div class="card-body">
+        <p class="card-text">Quiz en Histoire-Géo</p>
+      </div>
     </div>
   </div>
   <div class="card">
-    <img class="card-img-top" src="assets/img3.png" alt="Card image cap" />
-    <div class="card-body">
-      <p class="card-text">Encadrés par un intervenant prêt à dégainer sa magie noire pour vous aider</p>
+    <div [routerLink]="'/physique'" routerLinkActive="active" class="physique">
+      <img class="card-img-top" src="https://maville.com/photosmvi/2019/06/24/P20381379D3756850G.jpg" alt="Card image cap" />
+      <div class="card-body">
+        <p class="card-text">Quiz en physique-chimie</p>
+      </div>
     </div>
   </div>
 </div>
