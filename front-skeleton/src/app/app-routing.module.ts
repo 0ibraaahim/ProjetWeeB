@@ -9,7 +9,11 @@ import { MajorsComponent } from "majors/majors.component"
 import { MajorsResolver } from "majors/majors.resolver"
 import { MajorStudentsResolver } from "majors/major-students/major-students.resolver"
 import { MajorStudentsComponent } from "majors/major-students/major-students.component"
-import {AdminComponent} from "./admin/admin.component"
+import {AdminComponent} from "admin/admin.component"
+import {HistoireComponent} from "histoire/histoire.component"
+import {MathComponent} from "math/math.component"
+import {PhysiqueComponent} from "physique/physique.component"
+
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -21,6 +25,9 @@ const routes: Routes = [
     },
   },
   {path :"admin", component: AdminComponent},
+  {path :"histoire", component: HistoireComponent},
+  {path :"math", component: MathComponent},
+  {path :"physique", component: PhysiqueComponent},
   {
     path: "details-etudiant/:id",
     component: StudentDetailsComponent,

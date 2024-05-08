@@ -16,6 +16,9 @@ import { MajorsComponent } from "majors/majors.component"
 import { MajorStudentsComponent } from "majors/major-students/major-students.component"
 import { HttpClientModule } from "@angular/common/http"
 import {AdminComponent} from "./admin/admin.component"
+import { HistoireComponent} from "./histoire/histoire.component"
+import {MathComponent} from "./math/math.component"
+import {PhysiqueComponent} from "./physique/physique.component"
 
 
 @NgModule({
@@ -28,6 +31,9 @@ import {AdminComponent} from "./admin/admin.component"
     MajorsComponent,
     MajorStudentsComponent,
     AdminComponent,
+    HistoireComponent,
+    MathComponent,
+    PhysiqueComponent,
   ],
   imports: [
     BrowserModule,
