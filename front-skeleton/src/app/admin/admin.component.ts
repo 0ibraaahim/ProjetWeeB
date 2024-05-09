@@ -25,7 +25,8 @@ export class AdminComponent implements OnInit {
   checkLogin() {
     this.http.post<any>('http://localhost:8080/admin/login', { login: this.login, password: this.password })
       .subscribe((response: any) => {
-        if (response && response.success) {
+        console.log(response);
+        if (response) {
           // Authentification réussie, rediriger l'utilisateur
           this.loginMessage = 'Correct password.';
           this.router.navigate(["/math"]);
