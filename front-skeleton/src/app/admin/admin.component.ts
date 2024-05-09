@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit {
         if (response) {
           // Authentification réussie, rediriger l'utilisateur
           this.loginMessage = 'Correct password.';
-          this.router.navigate(["/math"]);
+          this.router.navigate(["/profil"]);
           this.invalidLogin = false;
         } else {
           // Authentification échouée

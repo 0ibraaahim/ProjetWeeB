@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title> Quiz de mathématiques</title>
-</head>
-<body>
 <div class="app">
   <h1>Bienvenue au quiz de mathématiques</h1>
-  <div class="quiz">
-    <div *ngFor="let question of mathQuestions">
-      <h2>{{ question.question }}</h2>
-      <div id="answer-buttons">
-        <button class="btn" *ngFor="let answer of question.answers">
-          {{ answer.name }}
-        </button>
-      </div>
+  <div class="quiz" *ngIf="mathQuestions">
+    <h2 id="question">{{ mathQuestions[0]?.question }}</h2>
+    <div id="answer-buttons">
+      <button class="btn" *ngFor="let answer of mathQuestions[0]?.answers">
+        {{ answer.name }}
+      </button>
     </div>
     <button id="next-btn">Question suivante</button>
   </div>
 </div>
-</body>
-</html>

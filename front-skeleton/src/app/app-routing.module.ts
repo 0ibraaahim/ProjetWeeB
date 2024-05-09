@@ -13,6 +13,7 @@ import {AdminComponent} from "admin/admin.component"
 import {HistoireComponent} from "histoire/histoire.component"
 import {MathComponent} from "math/math.component"
 import {PhysiqueComponent} from "physique/physique.component"
+import {ProfilComponent} from "profil/profil.component";
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     },
   },
   {path :"admin", component: AdminComponent},
+  {path :"profil", component: ProfilComponent},
   {path :"histoire", component: HistoireComponent},
   {path :"math", component: MathComponent},
   {path :"physique", component: PhysiqueComponent},

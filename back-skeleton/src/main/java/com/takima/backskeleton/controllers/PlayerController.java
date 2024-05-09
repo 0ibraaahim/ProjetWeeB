@@ -8,7 +8,7 @@ import com.takima.backskeleton.services.PlayerService;
 import java.util.List;
 
 @CrossOrigin
-@RequestMapping("students")
+@RequestMapping("players")
 @RestController
 @RequiredArgsConstructor
 public class PlayerController {

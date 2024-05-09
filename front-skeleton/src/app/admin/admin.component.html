@@ -9,16 +9,16 @@
 </head>
 <body>
 <div class="login-container">
-  <h2>Login</h2>
+  <h2>Connexion</h2>
   <div class="input-container">
-    User Name : <input type="text" placeholder="username" [(ngModel)]="login" >
+     <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="login" >
   </div>
   <div class="input-container">
-    Password : <input type="password" placeholder="password" [(ngModel)]="password" >
+    <input type="password" placeholder="mot de passe" [(ngModel)]="password" >
   </div>
   <div *ngIf="invalidLogin" class="error-message">{{ loginMessage }}</div>
   <button (click)="checkLogin()" class="btn btn-success">
-    Login
+    Se connecter
   </button>
 </div>
 </body>

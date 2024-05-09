@@ -19,6 +19,7 @@ import {AdminComponent} from "./admin/admin.component"
 import { HistoireComponent} from "./histoire/histoire.component"
 import {MathComponent} from "./math/math.component"
 import {PhysiqueComponent} from "./physique/physique.component"
+import  { ProfilComponent } from "./profil/profil.component";
 
 
 @NgModule({

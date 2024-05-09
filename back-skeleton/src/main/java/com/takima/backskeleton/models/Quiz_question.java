@@ -7,11 +7,15 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 
 @Entity
-@Table(name = "quiz")
+@Table(name = "quiz_question")
 @Getter
-public class Quiz {
+public class Quiz_question {
     @Id
-    @Column(name = "number_quiz")
-    private String number_quiz;
+    @Column(name = "quiz_id")
+    private String quiz_id;
+
+    @Id
+    @Column(name = "question_id")
+    private String question_id;
 
 }

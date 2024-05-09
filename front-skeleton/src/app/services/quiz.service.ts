@@ -8,9 +8,10 @@ import { Observable } from "rxjs";
 export class QuizService {
   constructor(private http: HttpClient) {}
 
-  getMathQuestions(): Observable<any> {
-    return this.http.get<any>("http:localhost:8080/questions/math");
+  getQuestions(): Observable<any> {
+    return this.http.get<any>("http://localhost:8080/questions");
   }
+
 
   // Ajoutez d'autres méthodes pour récupérer les questions des autres thèmes si nécessaire
 }
