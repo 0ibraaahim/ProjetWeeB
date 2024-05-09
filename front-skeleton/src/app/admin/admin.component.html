@@ -6,27 +6,20 @@
   <title>Login Page</title>
   <!-- Include Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 </head>
 <body>
 <div class="login-container">
-  <form class="login-form" >
-    <h2>Login</h2>
-    <div class="input-container">
-      <!-- Use template reference variables to bind inputs -->
-      <input type="text" placeholder="Username" required #username>
-      <!-- Font Awesome icon for username -->
-      <i class="fas fa-user"></i>
-    </div>
-    <div class="input-container">
-      <!-- Use type="password" for secure password input -->
-      <input type="password" placeholder="Password" required #password>
-      <!-- Font Awesome icon for password -->
-      <i class="fas fa-lock"></i>
-    </div>
-    <!-- Use type="submit" for form submission -->
-    <button type="submit" class="btn">Login</button>
-  </form>
+  <h2>Login</h2>
+  <div class="input-container">
+    User Name : <input type="text" placeholder="username" [(ngModel)]="login" >
+  </div>
+  <div class="input-container">
+    Password : <input type="password" placeholder="password" [(ngModel)]="password" >
+  </div>
+  <div *ngIf="invalidLogin" class="error-message">{{ loginMessage }}</div>
+  <button (click)="checkLogin()" class="btn btn-success">
+    Login
+  </button>
 </div>
 </body>
 </html>

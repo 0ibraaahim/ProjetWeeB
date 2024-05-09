@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit } from "@angular/core";
+import { QuizService } from "../services/quiz.service";
 
 @Component({
   selector: "math",
@@ -6,7 +7,17 @@ import { Component, OnInit } from "@angular/core"
   styleUrls: ["./math.component.scss"],
 })
 export class MathComponent implements OnInit {
-  constructor() {}
+  mathQuestions: any[]=[];
 
-  ngOnInit(): void {}
+  constructor(private quizService: QuizService) {}
+
+  ngOnInit(): void {
+    this.getMathQuestions();
+  }
+
+  getMathQuestions(): void {
+    this.quizService.getMathQuestions().subscribe((data) => {
+      this.mathQuestions = data;
+    });
+  }
 }

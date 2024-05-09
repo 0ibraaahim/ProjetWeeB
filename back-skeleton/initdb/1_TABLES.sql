@@ -37,8 +37,7 @@ CREATE TABLE question_answer(
 
 CREATE TABLE quiz
 (
-    id INT PRIMARY KEY,
-    image bytea  NOT NULL
+    id INT PRIMARY KEY
 );
 
 CREATE TABLE quiz_question
