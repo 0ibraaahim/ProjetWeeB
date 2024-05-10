@@ -1,12 +1,10 @@
 <div class="app">
   <h1>Bienvenue au quiz de mathématiques</h1>
-  <div class="quiz" *ngIf="mathQuestions">
-    <h2 id="question">{{ mathQuestions[0]?.question }}</h2>
+  <div class="quiz" *ngFor="let question of mathQuestions">
+    <h2 id="question">{{ question.question }}</h2>
     <div id="answer-buttons">
-      <button class="btn" *ngFor="let answer of mathQuestions[0]?.answers">
-        {{ answer.name }}
-      </button>
+
     </div>
-    <button id="next-btn">Question suivante</button>
   </div>
+  <button id="next-btn">Question suivante</button>
 </div>

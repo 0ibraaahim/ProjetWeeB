@@ -17,6 +17,7 @@ export class MathComponent implements OnInit {
 
   getQuestions(): void {
     this.quizService.getQuestions().subscribe((data) => {
+      console.log(data);
       // Filtrer les questions de mathématiques par ID
       this.mathQuestions = data.filter((question: { id: number; }) => question.id >= 1 && question.id <= 5);
     });
