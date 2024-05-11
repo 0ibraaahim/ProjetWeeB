@@ -70,7 +70,7 @@ export class MathComponent implements OnInit {
   }
   nextButtonText(): string {
     if (this.mathQuestions[this.currentQuestionIndex]?.id === 5) {
-      return "Show Score";
+      return "Afficher mon score";
     } else {
       return "Question suivante";
     }
