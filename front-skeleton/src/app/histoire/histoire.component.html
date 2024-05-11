@@ -1,18 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title> Quiz de histoire-géo</title>
-</head>
-<body>
 <div class="app">
-  <h1>Bienvenue au quiz d'histoire géo</h1>
+  <h1>Bienvenue au quiz d'histoire-géo</h1>
   <div class="quiz">
-    <h2 id="question">question</h2>
+    <h2 id="question">{{ histoireQuestions[currentQuestionIndex]?.question }}</h2>
     <div id="answer-buttons">
-      <button class="btn">Answer 1</button>
+      <button class="btn" *ngFor="let answer of getAnswersByQuestionId(histoireQuestions[currentQuestionIndex]?.id)"
+              (click)="selectAnswer(answer.id)"
+              [ngClass]="{
+          'selected': selectedAnswerId === answer.id,
+          'correct': selectedAnswerId === answer.id && answer.response_value,
+          'wrong': selectedAnswerId === answer.id && !answer.response_value
+        }"
+              [disabled]="answerSelected"> <!-- Disable the button if an answer is selected -->
+        {{ answer.response }}
+      </button>
 
     </div>
+    <p>{{ feedbackMessage }}</p>
+    <button id="next-btn" (click)="nextQuestion()">
+      {{ nextButtonText() }}
+    </button>
+
   </div>
 </div>
-</body>
-</html>

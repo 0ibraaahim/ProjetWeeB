@@ -9,7 +9,7 @@ import {QuizService} from "../services/quiz.service";
 export class PhysiqueComponent implements OnInit {
   physiqueQuestions: any[] = [];
   physiqueAnswers: any[]=[];
-  currentQuestionIndex: number = 5;
+  currentQuestionIndex: number = 10;
   selectedAnswerId: number | null = null;
   feedbackMessage: string = "";
   correctAnswers: number = 0;
@@ -55,7 +55,7 @@ export class PhysiqueComponent implements OnInit {
 
   nextQuestion(): void {
     if (this.currentQuestionIndex < this.physiqueQuestions.length - 1) {
-      if (this.physiqueQuestions[this.currentQuestionIndex].id === 10) {
+      if (this.physiqueQuestions[this.currentQuestionIndex].id === 15) {
         const totalQuestions = Math.min(this.physiqueQuestions.length, 5);
         this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur ${totalQuestions}`;
       } else {
@@ -65,11 +65,11 @@ export class PhysiqueComponent implements OnInit {
         this.answerSelected = false; // Reset answer selection for the next question
       }
     } else {
-      this.feedbackMessage = `Votre score est: ${this.correctAnswers} sur ${this.physiqueQuestions.length}`;
+      this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur 5`;
     }
   }
   nextButtonText(): string {
-    if (this.physiqueQuestions[this.currentQuestionIndex]?.id === 10) {
+    if (this.physiqueQuestions[this.currentQuestionIndex]?.id === 15) {
       return "Afficher mon score";
     } else {
       return "Question suivante";
