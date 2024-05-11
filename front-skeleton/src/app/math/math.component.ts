@@ -1,3 +1,5 @@
+// math.component.ts
+
 import { Component, OnInit } from "@angular/core";
 import { QuizService } from "../services/quiz.service";
 
@@ -14,6 +16,7 @@ export class MathComponent implements OnInit {
   feedbackMessage: string = "";
   correctAnswers: number = 0;
   answerSelected: boolean = false; // Add property to track if an answer is selected
+  showScoreBox: boolean = false;
 
   constructor(private quizService: QuizService) {}
 
@@ -57,7 +60,8 @@ export class MathComponent implements OnInit {
     if (this.currentQuestionIndex < this.mathQuestions.length - 1) {
       if (this.mathQuestions[this.currentQuestionIndex].id === 5) {
         const totalQuestions = Math.min(this.mathQuestions.length, 5);
-        this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur ${totalQuestions}`;
+        this.showScoreBox = true; // Show the score box
+
       } else {
         this.selectedAnswerId = null;
         this.feedbackMessage = "";
@@ -65,7 +69,8 @@ export class MathComponent implements OnInit {
         this.answerSelected = false; // Reset answer selection for the next question
       }
     } else {
-      this.feedbackMessage = `Votre score est: ${this.correctAnswers} sur ${this.mathQuestions.length}`;
+      this.showScoreBox = true; // Show the score box
+
     }
   }
   nextButtonText(): string {
@@ -76,5 +81,8 @@ export class MathComponent implements OnInit {
     }
   }
 
-
+  // Method to close the score box
+  closeScoreBox(): void {
+    this.showScoreBox = false;
+  }
 }

@@ -25,12 +25,12 @@ INSERT INTO questions (id, question) VALUES
 
 -- Réponses pour Maths
 INSERT INTO answer (id, response, question_id, response_value) VALUES
-                                                               (1, '4', 1, true),
+                                                               (1, '2', 1, false),
                                                                (2, '8', 1, false),
-                                                               (3, '2', 1, false),
+                                                               (3, '4', 1, true),
                                                                (4, '6', 1, false),
-                                                               (5, '90°', 2, true),
-                                                               (6, '180°', 2, false),
+                                                               (5, '180°', 2, false),
+                                                               (6, '90°', 2, true),
                                                                (7, '45°', 2, false),
                                                                (8, '360°', 2, false),
                                                                (9, '3.14', 3, true),
