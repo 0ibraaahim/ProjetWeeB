@@ -68,7 +68,7 @@ export class HistoireComponent implements OnInit {
     }
   }
   nextButtonText(): string {
-    if (this.histoireQuestions[this.currentQuestionIndex]?.id === 11) {
+    if (this.histoireQuestions[this.currentQuestionIndex]?.id === 10) {
       return "Afficher mon score";
     } else {
       return "Question suivante";
