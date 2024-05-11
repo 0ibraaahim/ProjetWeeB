@@ -16,7 +16,7 @@ import java.util.List;
 public class QuestionsController {
     private final QuestionsService questionsService;
     @GetMapping("")
-    public List<Questions> listStudents() {
+    public List<Questions> listQuestions() {
         return questionsService.findAll();
     }
 

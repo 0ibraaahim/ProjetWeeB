@@ -20,7 +20,7 @@ create table questions
 CREATE TABLE answer
 (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
+    response VARCHAR(50) NOT NULL,
     question_id INTEGER NOT NULL,
     response_value BOOLEAN NOT NULL,
     FOREIGN KEY (question_id) REFERENCES Questions(id)

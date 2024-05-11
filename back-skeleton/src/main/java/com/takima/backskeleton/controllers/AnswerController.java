@@ -16,7 +16,7 @@ import java.util.List;
 public class AnswerController {
     private final AnswerService answerService;
 
-    @PostMapping("")
+    @GetMapping("")
     public List<Answer> listAnswer() {
         return answerService.findAll();
     }

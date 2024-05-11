@@ -12,6 +12,7 @@ export class QuizService {
     return this.http.get<any>("http://localhost:8080/questions");
   }
 
-
-  // Ajoutez d'autres méthodes pour récupérer les questions des autres thèmes si nécessaire
+  getAnswers(): Observable<any> {
+    return this.http.get<any>("http://localhost:8080/answer");
+  }
 }

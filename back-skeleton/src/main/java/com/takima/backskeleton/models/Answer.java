@@ -14,18 +14,18 @@ public class Answer {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "response")
+    private String response;
 
     @Column(name = "question_id")
     private int question_id;
 
-    @Column(name = "reponse_value")
+    @Column(name = "response_value")
     private boolean response_value;
 
     private Answer(Builder builder) {
         this.id = builder.id;
-        this.name = builder.name;
+        this.response = builder.response;
         this.question_id=builder.question_id;
         this.response_value=builder.response_value;
     }
@@ -35,7 +35,7 @@ public class Answer {
 
     public static class Builder {
         private int id;
-        private String name;
+        private String response;
         private int question_id;
         private boolean response_value;
 
@@ -45,8 +45,8 @@ public class Answer {
             return this;
         }
 
-        public Builder name(String name) {
-            this.name = name;
+        public Builder response(String response) {
+            this.response = response;
             return this;
         }
         public Builder question_id(int question_id){

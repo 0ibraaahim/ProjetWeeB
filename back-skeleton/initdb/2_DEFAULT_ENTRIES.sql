@@ -24,7 +24,7 @@ INSERT INTO questions (id, question) VALUES
                                          (15, 'Quelle est la formule de la masse volumique ?');
 
 -- Réponses pour Maths
-INSERT INTO answer (id, name, question_id, response_value) VALUES
+INSERT INTO answer (id, response, question_id, response_value) VALUES
                                                                (1, '4', 1, true),
                                                                (2, '8', 1, false),
                                                                (3, '2', 1, false),
@@ -47,7 +47,7 @@ INSERT INTO answer (id, name, question_id, response_value) VALUES
                                                                (20, '6', 5, false);
 
 -- Réponses pour Histoire-Géo
-INSERT INTO answer (id, name, question_id, response_value) VALUES
+INSERT INTO answer (id, response, question_id, response_value) VALUES
                                                                (21, '1789', 6, true),
                                                                (22, '1848', 6, false),
                                                                (23, '1914', 6, false),
@@ -70,7 +70,7 @@ INSERT INTO answer (id, name, question_id, response_value) VALUES
                                                                (40, 'Le Yangtsé', 10, false);
 
 -- Réponses pour Physique chimie
-INSERT INTO answer (id, name, question_id, response_value) VALUES
+INSERT INTO answer (id, response, question_id, response_value) VALUES
                                                                (41, 'Fe', 11, true),
                                                                (42, 'F', 11, false),
                                                                (43, 'Fr', 11, false),
@@ -115,4 +115,4 @@ INSERT INTO question_answer (question_id, answer_id) VALUES
 (15, 57), (15, 58), (15, 59), (15, 60);
 
 -- Insérer les quiz
-INSERT INTO quiz (id) VALUES(1), (2), (3);
+INSERT INTO quiz (id) VALUES (1), (2), (3);
