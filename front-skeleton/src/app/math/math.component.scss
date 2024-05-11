@@ -52,6 +52,7 @@ body{
   background: #222;
   color: #fff;
 }
+
 #next-btn{
   background: #3A1C71;
   color: #fff;
@@ -62,4 +63,18 @@ body{
   margin: 20px auto 0;
   border-radius: 4px;
   cursor: pointer;
-  display: block;}
+  display: block;
+}
+/* Add these classes to your CSS file */
+.btn.selected {
+  background-color: #ccc; /* Color for selected answer */
+}
+
+.btn.correct {
+  background-color: #6dbb3a; /* Color for correct answer */
+}
+
+.btn.wrong {
+  background-color: #db3a3a; /* Color for wrong answer */
+}
+

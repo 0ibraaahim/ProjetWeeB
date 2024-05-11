@@ -5,9 +5,15 @@
     <div id="answer-buttons">
       <button class="btn" *ngFor="let answer of getAnswersByQuestionId(mathQuestions[currentQuestionIndex]?.id)"
               (click)="selectAnswer(answer.id)"
-              [ngClass]="{'selected': selectedAnswerId === answer.id}">
+              [ngClass]="{
+          'selected': selectedAnswerId === answer.id,
+          'correct': selectedAnswerId === answer.id && answer.response_value,
+          'wrong': selectedAnswerId === answer.id && !answer.response_value
+        }"
+              [disabled]="answerSelected"> <!-- Disable the button if an answer is selected -->
         {{ answer.response }}
       </button>
+
     </div>
     <p>{{ feedbackMessage }}</p>
     <button id="next-btn" (click)="nextQuestion()">Question suivante</button>
