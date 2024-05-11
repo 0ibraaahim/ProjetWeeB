@@ -45,9 +45,9 @@ export class MathComponent implements OnInit {
       const selectedAnswer = this.mathAnswers.find(answer => answer.id === answerId);
       if (selectedAnswer && selectedAnswer.response_value) {
         this.correctAnswers++;
-        this.feedbackMessage = "Correct answer!";
+        this.feedbackMessage = "Vrai !";
       } else {
-        this.feedbackMessage = "Wrong answer!";
+        this.feedbackMessage = "Faux :( ";
       }
       this.answerSelected = true; // Mark that an answer has been selected
     }
@@ -55,9 +55,9 @@ export class MathComponent implements OnInit {
 
   nextQuestion(): void {
     if (this.currentQuestionIndex < this.mathQuestions.length - 1) {
-      if (this.mathQuestions[this.currentQuestionIndex].id === 4) {
-        const totalQuestions = Math.min(this.mathQuestions.length, 4);
-        this.feedbackMessage = `Your score: ${this.correctAnswers} out of ${totalQuestions}`;
+      if (this.mathQuestions[this.currentQuestionIndex].id === 5) {
+        const totalQuestions = Math.min(this.mathQuestions.length, 5);
+        this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur ${totalQuestions}`;
       } else {
         this.selectedAnswerId = null;
         this.feedbackMessage = "";
@@ -65,7 +65,16 @@ export class MathComponent implements OnInit {
         this.answerSelected = false; // Reset answer selection for the next question
       }
     } else {
-      this.feedbackMessage = `Your score: ${this.correctAnswers} out of ${this.mathQuestions.length}`;
+      this.feedbackMessage = `Votre score est: ${this.correctAnswers} sur ${this.mathQuestions.length}`;
     }
   }
+  nextButtonText(): string {
+    if (this.mathQuestions[this.currentQuestionIndex]?.id === 5) {
+      return "Show Score";
+    } else {
+      return "Question suivante";
+    }
+  }
+
+
 }

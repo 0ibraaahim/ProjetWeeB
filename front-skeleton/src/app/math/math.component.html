@@ -16,6 +16,9 @@
 
     </div>
     <p>{{ feedbackMessage }}</p>
-    <button id="next-btn" (click)="nextQuestion()">Question suivante</button>
+    <button id="next-btn" (click)="nextQuestion()">
+      {{ nextButtonText() }}
+    </button>
+
   </div>
 </div>
