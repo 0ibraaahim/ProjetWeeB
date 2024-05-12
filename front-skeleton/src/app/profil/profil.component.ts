@@ -15,12 +15,6 @@ export class ProfilComponent implements OnInit {
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
-    this.loadQuizzes();
-  }
 
-  loadQuizzes() {
-    this.quizService.getAllQuizzes().subscribe((quizzes: Quiz[]) => {
-      this.quizzes = quizzes;
-    });
   }
 }

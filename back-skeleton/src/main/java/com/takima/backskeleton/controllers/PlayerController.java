@@ -13,8 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlayerController {
     private final PlayerService playerService;
-    @GetMapping("")
-    public List<Player> listStudents() {
+    @PostMapping("")
+    public List<Player> listPlayers() {
         return playerService.findAll();
     }
 

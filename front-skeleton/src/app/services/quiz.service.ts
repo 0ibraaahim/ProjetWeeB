@@ -19,4 +19,8 @@ export class QuizService {
   getAllQuizzes(): Observable<any> {
     return this.http.get<any>("http://localhost:8080/quiz");
   }
+
+  addPlayer(playerName: string, score: number) {
+    return this.http.post<any>("http://localhost:8080/players", { pseudo: playerName, best_score: score });
+  }
 }
