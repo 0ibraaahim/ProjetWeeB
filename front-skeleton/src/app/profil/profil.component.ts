@@ -1,25 +1,26 @@
 import { Component, OnInit } from "@angular/core";
 import { QuizService } from "../services/quiz.service";
+import { Quiz } from "../models/quiz.model";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: "app-profil",
+  selector: "profil",
   templateUrl: "./profil.component.html",
   styleUrls: ["./profil.component.scss"],
   standalone: true
 })
 export class ProfilComponent implements OnInit {
+  quizzes: any[] = [];
+
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
-    this.getQuestions();
+    this.loadQuizzes();
   }
 
-
-
-  getQuestions(): void {
-    this.quizService.getQuestions().subscribe((data) => {
-      // Afficher les questions dans la console
-      console.log("Questions récupérées :", data);
+  loadQuizzes() {
+    this.quizService.getAllQuizzes().subscribe((quizzes: Quiz[]) => {
+      this.quizzes = quizzes;
     });
   }
 }

@@ -1,17 +1,10 @@
 <!-- profil.component.html -->
 
-<!-- profil.component.html -->
-
-<body>
 <div class="profil-container">
   <h2>Quizs proposés</h2>
   <ul>
-    <li class="quiz-item">
-      <--!button class="quiz-button" (click)="showMathQuestions()">Quiz math/button-->
+    <li *ngFor="let quiz of quizzes">
+      {{ quiz.id }}
     </li>
-    <!-- Add similar buttons for other quizzes -->
   </ul>
 </div>
-</body>
-
-

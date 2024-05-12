@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 public class Quiz {
     @Id
-    @Column(name = "number_quiz")
-    private String number_quiz;
+    @Column(name = "id")
+    private String id;
 
 }

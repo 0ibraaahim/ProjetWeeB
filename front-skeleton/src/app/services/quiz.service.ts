@@ -15,4 +15,8 @@ export class QuizService {
   getAnswers(): Observable<any> {
     return this.http.get<any>("http://localhost:8080/answer");
   }
+
+  getAllQuizzes(): Observable<any> {
+    return this.http.get<any>("http://localhost:8080/quiz");
+  }
 }

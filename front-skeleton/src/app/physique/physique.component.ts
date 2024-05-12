@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core"
-import {QuizService} from "../services/quiz.service";
+// physique.component.ts
+
+import { Component, OnInit } from "@angular/core";
+import { QuizService } from "../services/quiz.service";
 
 @Component({
   selector: "physique",
@@ -8,12 +10,13 @@ import {QuizService} from "../services/quiz.service";
 })
 export class PhysiqueComponent implements OnInit {
   physiqueQuestions: any[] = [];
-  physiqueAnswers: any[]=[];
-  currentQuestionIndex: number = 10;
+  physiqueAnswers: any[] = [];
+  currentQuestionIndex: number = 11;
   selectedAnswerId: number | null = null;
   feedbackMessage: string = "";
   correctAnswers: number = 0;
   answerSelected: boolean = false; // Add property to track if an answer is selected
+  showScoreBox: boolean = false;
 
   constructor(private quizService: QuizService) {}
 
@@ -35,6 +38,7 @@ export class PhysiqueComponent implements OnInit {
       this.physiqueAnswers = data;
     });
   }
+
   getAnswersByQuestionId(questionId: number): any[] {
     return this.physiqueAnswers.filter(answer => answer.question_id === questionId);
   }
@@ -55,24 +59,32 @@ export class PhysiqueComponent implements OnInit {
 
   nextQuestion(): void {
     if (this.currentQuestionIndex < this.physiqueQuestions.length - 1) {
-      if (this.physiqueQuestions[this.currentQuestionIndex].id === 15) {
-        const totalQuestions = Math.min(this.physiqueQuestions.length, 5);
-        this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur ${totalQuestions}`;
-      } else {
-        this.selectedAnswerId = null;
-        this.feedbackMessage = "";
-        this.currentQuestionIndex++;
-        this.answerSelected = false; // Reset answer selection for the next question
-      }
+      this.selectedAnswerId = null;
+      this.feedbackMessage = "";
+      this.currentQuestionIndex++;
+      this.answerSelected = false; // Reset answer selection for the next question
     } else {
-      this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur 5`;
+      if (this.physiqueQuestions[this.currentQuestionIndex].id === 15) {
+        this.showScoreBox = true; // Show the score box
+
+      } else {
+        this.showScoreBox = true; // Show the score box
+        this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur ${this.physiqueQuestions.length}`;
+      }
     }
   }
+
+
   nextButtonText(): string {
-    if (this.physiqueQuestions[this.currentQuestionIndex]?.id === 15) {
+    if (this.physiqueQuestions[this.currentQuestionIndex]?.id === 5) {
       return "Afficher mon score";
     } else {
       return "Question suivante";
     }
+  }
+
+  // Method to close the score box
+  closeScoreBox(): void {
+    this.showScoreBox = false;
   }
 }

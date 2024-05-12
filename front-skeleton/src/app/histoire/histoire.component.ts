@@ -8,12 +8,12 @@ import { QuizService } from "../services/quiz.service";
 export class HistoireComponent implements OnInit {
   histoireQuestions: any[] = [];
   histoireAnswers: any[] = [];
-  currentQuestionIndex: number = 6;
+  currentQuestionIndex: number = 5;
   selectedAnswerId: number | null = null;
   feedbackMessage: string = "";
   correctAnswers: number = 0;
   answerSelected: boolean = false; // Add property to track if an answer is selected
-
+  showScoreBox: boolean=false;
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
@@ -53,20 +53,20 @@ export class HistoireComponent implements OnInit {
   }
 
   nextQuestion(): void {
-    if (this.currentQuestionIndex < this.histoireQuestions.length - 1) {
-      if (this.histoireQuestions[this.currentQuestionIndex].id === 10) {
-        const totalQuestions = Math.min(this.histoireQuestions.length, 5);
-        this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur ${totalQuestions}`;
+    if (this.currentQuestionIndex < this.histoireQuestions.length) {
+      const currentQuestion = this.histoireQuestions[this.currentQuestionIndex];
+      if (currentQuestion.id === 10) {
+        this.showScoreBox = true; // Show the score box
       } else {
         this.selectedAnswerId = null;
         this.feedbackMessage = "";
+        this.answerSelected = false;
         this.currentQuestionIndex++;
-        this.answerSelected = false; // Reset answer selection for the next question
       }
-    } else {
-      this.feedbackMessage = `Votre score est: ${this.correctAnswers} sur 5`;
     }
   }
+
+
   nextButtonText(): string {
     if (this.histoireQuestions[this.currentQuestionIndex]?.id === 10) {
       return "Afficher mon score";
@@ -74,6 +74,8 @@ export class HistoireComponent implements OnInit {
       return "Question suivante";
     }
   }
-
+  closeScoreBox(): void {
+    this.showScoreBox = false;
+  }
 
 }

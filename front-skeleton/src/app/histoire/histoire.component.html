@@ -3,22 +3,30 @@
   <div class="quiz">
     <h2 id="question">{{ histoireQuestions[currentQuestionIndex]?.question }}</h2>
     <div id="answer-buttons">
-      <button class="btn" *ngFor="let answer of getAnswersByQuestionId(histoireQuestions[currentQuestionIndex]?.id)"
+      <button class="btn"
+              *ngFor="let answer of getAnswersByQuestionId(histoireQuestions[currentQuestionIndex]?.id)"
               (click)="selectAnswer(answer.id)"
               [ngClass]="{
-          'selected': selectedAnswerId === answer.id,
-          'correct': selectedAnswerId === answer.id && answer.response_value,
-          'wrong': selectedAnswerId === answer.id && !answer.response_value
-        }"
-              [disabled]="answerSelected"> <!-- Disable the button if an answer is selected -->
+                'selected': selectedAnswerId === answer.id,
+                'correct': selectedAnswerId === answer.id && answer.response_value,
+                'wrong': selectedAnswerId === answer.id && !answer.response_value
+              }"
+              [disabled]="answerSelected ">
         {{ answer.response }}
       </button>
-
     </div>
     <p>{{ feedbackMessage }}</p>
-    <button id="next-btn" (click)="nextQuestion()">
+    <button id="next-btn" (click)="nextQuestion()" [disabled]="showScoreBox">
+      <!-- Disable the button if the score box is shown -->
       {{ nextButtonText() }}
     </button>
 
+    <!-- Score Box -->
+    <div *ngIf="showScoreBox" class="score-box">
+      <p style="font-size: 25px; color: #3A1C71; font-weight: 600; border-bottom: 1px solid #333; padding-bottom: 30px;">
+        Votre score est: {{ correctAnswers }} sur {{ histoireQuestions.length }}
+      </p>
+      <button class="btn" (click)="closeScoreBox()">OK</button>
+    </div>
   </div>
 </div>

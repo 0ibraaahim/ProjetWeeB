@@ -59,9 +59,9 @@ export class MathComponent implements OnInit {
   nextQuestion(): void {
     if (this.currentQuestionIndex < this.mathQuestions.length - 1) {
       if (this.mathQuestions[this.currentQuestionIndex].id === 5) {
+
         const totalQuestions = Math.min(this.mathQuestions.length, 5);
         this.showScoreBox = true; // Show the score box
-
       } else {
         this.selectedAnswerId = null;
         this.feedbackMessage = "";
@@ -69,7 +69,7 @@ export class MathComponent implements OnInit {
         this.answerSelected = false; // Reset answer selection for the next question
       }
     } else {
-      this.showScoreBox = true; // Show the score box
+      this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur 5`;
 
     }
   }
