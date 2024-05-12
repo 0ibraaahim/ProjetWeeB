@@ -17,12 +17,15 @@ export class PhysiqueComponent implements OnInit {
   correctAnswers: number = 0;
   answerSelected: boolean = false; // Add property to track if an answer is selected
   showScoreBox: boolean = false;
+  timeLeft: number = 20; // Initial time for the quiz in seconds
+  timer: any;
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
     this.getQuestions();
     this.getAnswers();
+    this.startTimer();
   }
 
   getQuestions(): void {
@@ -44,7 +47,7 @@ export class PhysiqueComponent implements OnInit {
   }
 
   selectAnswer(answerId: number): void {
-    if (!this.answerSelected) { // Only proceed if an answer has not been selected
+    if (!this.answerSelected && this.timeLeft>0) { // Only proceed if an answer has not been selected
       this.selectedAnswerId = answerId;
       const selectedAnswer = this.physiqueAnswers.find(answer => answer.id === answerId);
       if (selectedAnswer && selectedAnswer.response_value) {
@@ -86,5 +89,15 @@ export class PhysiqueComponent implements OnInit {
   // Method to close the score box
   closeScoreBox(): void {
     this.showScoreBox = false;
+  }
+  startTimer() {
+    this.timer = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.closeScoreBox(); // Call function to finish the quiz when time runs out
+        clearInterval(this.timer); // Stop the timer when time runs out
+      }
+    }, 1000); // Timer updates every second (1000 milliseconds)
   }
 }

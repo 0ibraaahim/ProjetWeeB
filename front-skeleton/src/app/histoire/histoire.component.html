@@ -1,6 +1,11 @@
 <div class="app">
   <h1>Bienvenue au quiz d'histoire-géo</h1>
   <div class="quiz">
+    <!-- Black box for timer -->
+    <div class="timer-box">
+      <p class="timer-text">Time Left: {{ timeLeft }} seconds</p>
+    </div>
+
     <h2 id="question">{{ histoireQuestions[currentQuestionIndex]?.question }}</h2>
     <div id="answer-buttons">
       <button class="btn"

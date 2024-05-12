@@ -3,6 +3,10 @@
 <div class="app">
   <h1>Bienvenue au quiz de physique-chimie</h1>
   <div class="quiz">
+
+    <div class="timer-box">
+      <p class="timer-text">Time Left: {{ timeLeft }} seconds</p>
+    </div>
     <h2 id="question">{{ physiqueQuestions[currentQuestionIndex]?.question }}</h2>
     <div id="answer-buttons">
       <button class="btn" *ngFor="let answer of getAnswersByQuestionId(physiqueQuestions[currentQuestionIndex]?.id)"
