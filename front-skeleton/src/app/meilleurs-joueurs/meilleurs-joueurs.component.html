@@ -1,0 +1,14 @@
+<!-- meilleurs-joueurs.component.html -->
+<div class="meilleurs-joueurs">
+  <h2>Meilleurs Joueurs</h2>
+  @if(joueurs.length>0) {
+    <div>
+      <ul>
+        <li *ngFor="let joueur of joueurs">
+          <span>{{ joueur.pseudo }}</span> - <span>Meilleur Score: {{ joueur.bestScore }}</span>
+        </li>
+      </ul>
+    </div>
+  } @else {
+    <div>Aucun Joueur n'est trouvé!</div>
+  }
