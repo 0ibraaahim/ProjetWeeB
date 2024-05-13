@@ -20,6 +20,7 @@ import { HistoireComponent} from "./histoire/histoire.component"
 import {MathComponent} from "./math/math.component"
 import {PhysiqueComponent} from "./physique/physique.component"
 import  { ProfilComponent } from "./profil/profil.component";
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import  { ProfilComponent } from "./profil/profil.component";
     MatIconModule,
     MatButtonModule,
     HttpClientModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

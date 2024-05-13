@@ -14,7 +14,7 @@ import {HistoireComponent} from "histoire/histoire.component"
 import {MathComponent} from "math/math.component"
 import {PhysiqueComponent} from "physique/physique.component"
 import {ProfilComponent} from "profil/profil.component";
-
+import { MeilleursJoueursComponent } from './meilleurs-joueurs/meilleurs-joueurs.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -30,6 +30,8 @@ const routes: Routes = [
   {path :"histoire", component: HistoireComponent},
   {path :"math", component: MathComponent},
   {path :"physique", component: PhysiqueComponent},
+  { path: 'meilleurs-joueurs', component: MeilleursJoueursComponent },
+
   {
     path: "details-etudiant/:id",
     component: StudentDetailsComponent,

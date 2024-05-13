@@ -11,6 +11,7 @@ export class NavbarComponent {
 
   constructor() {
     this.links.push({ name: "Connexion Admin", href: "admin" })
+    this.links.push({ name: "Meilleurs Joueurs", href: "meilleurs-joueurs" })
     this.links.push({name: "Accueil", href:"accueil"})
 
   }

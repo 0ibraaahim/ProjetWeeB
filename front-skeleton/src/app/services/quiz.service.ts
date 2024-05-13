@@ -20,7 +20,20 @@ export class QuizService {
     return this.http.get<any>("http://localhost:8080/quiz");
   }
 
-  addPlayer(playerName: string, score: number) {
-    return this.http.post<any>("http://localhost:8080/players", { pseudo: playerName, best_score: score });
+  addPlayer(pseudo: string) {
+    return this.http.post<any>("http://localhost:8080/players", { pseudo: pseudo, bestScore: 0 });
   }
+
+
+  updateBestScore(pseudo: string, newBestScore: number): Observable<any> {
+    return this.http.put<any>("http://localhost:8080/players", { pseudo:pseudo, bestScore: newBestScore });
+  }
+
+
+
+
+  getMeilleursJoueurs(): Observable<any> {
+    return this.http.get<any>("http://localhost:8080/players");
+  }
+
 }
