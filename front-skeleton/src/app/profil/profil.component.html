@@ -1,5 +1,89 @@
 <!-- profil.component.html -->
 
 <div class="profil-container">
-  <h2>Quizs proposés</h2>
+  <h2>Liste des quiz</h2>
+
+</div>
+
+
+
+<div *ngFor="let quiz of quizzes" class="card">
+  <div>
+    <h5>{{ quiz.name }}</h5>
+    <p>ID: {{ quiz.id }}</p>
+    <button (click)="editQuiz(quiz)" class="btn btn-primary">Modifier</button>
+    <button (click)="deleteQuiz(quiz.id)" class="btn btn-danger">Supprimer</button>
+  </div>
+</div>
+
+
+<div class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3 *ngIf="getSelectedQuiz() !== null">Quiz sélectionné : {{ getSelectedQuiz()?.name }}</h3>
+    <h4>Questions :</h4>
+    <div *ngFor="let question of getQuestionsForSelectedQuiz(), let i = index ">
+      <div>
+        <label>Question {{ i + 1 }}:</label>
+        <input class="input-question" type="text" id="newQuestion{{ i }}" [(ngModel)]="question.question">
+      </div>
+
+      <div *ngFor="let answer of getAnswerForSelectedQuiz(question.id); let a = index">
+        <div *ngIf="answer.question_id === question.id">
+          <label for="editedAnswer{{ i }}{{ answer.id }}">Réponse {{ a + 1 }} :</label>
+          <input type="text" id="editedAnswer{{ i }}{{ answer.id }}" [(ngModel)]="answer.response">
+          <input type="checkbox" id="editedCorrectAnswer{{ i }}{{ answer.id }}" [(ngModel)]="answer.response_value">
+        </div>
+      </div>
+      <br>
+      <button (click)="saveQuestion(question, getAnswerForSelectedQuiz(question.id))">Enregistrer</button>
+      <br><br><br><br>
+    </div>
+  </div>
+</div>
+
+
+<br>
+
+<!-- Formulaire de création de quiz -->
+<div id="createQuizModal2" class="modal2" style="display: none;">
+  <div class="modal-content">
+    <span class="close" (click)="closeCreateQuizModal()">&times;</span>
+    <h3>Créer un nouveau quiz</h3>
+    <!-- Nom du quiz -->
+    <div>
+      <label for="newQuizName">Nom du quiz :</label>
+      <input class="input-question" type="text" id="newQuizName" [(ngModel)]="newQuizName">
+    </div>
+    <!-- Liste des questions -->
+    <div *ngFor="let question of newQuestions; let i = index">
+
+      <br>
+      <h4>Question {{ i + 1 }}</h4>
+      <!-- Texte de la question -->
+      <div>
+        <label for="newQuestion{{ i }}">Question :</label>
+        <input class="input-question" type="text" id="newQuestion{{ i }}" [(ngModel)]="question.question">
+      </div>
+      <!-- Réponses de la question -->
+      <div *ngFor="let answer of newAnswers.slice(i*4, i*4 +4); let a = index">
+        <label for="newAnswer{{ i }}{{ answer.id }}">Réponse {{ a + 1 }} :</label>
+        <input type="text" id="newAnswer{{ i }}{{ answer.id }}" [(ngModel)]="answer.response">
+        <input type="checkbox" id="newCorrectAnswer{{ i }}{{ answer.id }}" [(ngModel)]="answer.response_value">
+      </div>
+    </div>
+    <br>
+    <!-- Bouton pour enregistrer le quiz -->
+    <button class="button-save" (click)="saveQuiz()">Enregistrer</button>
+  </div>
+</div>
+
+
+
+<!-- Bouton pour créer un nouveau quiz -->
+<button (click)="createQuiz()" class="btn-create-quiz">Créer un nouveau quiz</button>
+
+<!-- Message de succès -->
+<div *ngIf="successMessage" class="alert alert-success" role="alert">
+  {{ successMessage }}
 </div>

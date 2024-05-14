@@ -1,32 +1,144 @@
 body {
-  background: #3A1C71;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #3A1C71;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Conteneur principal */
 .profil-container {
   padding: 70px;
   display: flex;
-  justify-content: center; /* Horizontally center items */
+  justify-content: center;
   align-items: center;
 }
 
-.quiz-item {
-  list-style-type: none;
-  margin-bottom: 10px;
-  padding: 20px; /* Adjust padding as needed */
-  background-color: #3A1C77;
-  border-radius: 5px;
+/* Style du titre */
+h2 {
+  color: #3A1C77;
+  font-size: 28px;
+}
+
+/* Fenêtre modale */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Contenu de la fenêtre modale */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+
+}
+
+/* Bouton de fermeture */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
   cursor: pointer;
 }
 
-.quiz-item:hover {
-  background-color: #3A1C77;
+/* Formulaire de création de quiz */
+.modal2 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
 }
 
-h2 {
-  color: #3A1C77; /* Change color of the heading to purple */
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
-  font-size: 25px;
+/* Style des champs de saisie */
+.input-question, .input-answer {
+  width: calc(100% - 20px);
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Style des boutons */
+.button-save {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button-save:hover {
+  background-color: #45a049;
+}
+
+
+/* Style de la carte contenant les quiz */
+.card {
+  margin-bottom: 20px; /* Marge inférieure */
+  padding: 15px; /* Espacement interne */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 5px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre */
+}
+
+/* Style du contenu de la carte */
+.card-content {
+  display: flex; /* Affichage en ligne */
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center; /* Centrage vertical */
+}
+
+/* Style des boutons Modifier et Supprimer */
+.btn-primary,
+.btn-danger {
+  padding: 8px 16px; /* Espacement interne */
+  font-size: 14px; /* Taille de la police */
+  border: none; /* Suppression de la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de la souris */
+  transition: background-color 0.3s; /* Animation au survol */
+}
+
+
+
+.btn-create-quiz {
+  margin-bottom: 20px;
+  margin-left: 20px;
+
+  padding: 12px 24px; /* Espacement interne */
+  font-size: 16px; /* Taille de la police */
+  border: none; /* Suppression de la bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de la souris */
+  background-color: #4CAF50; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  transition: background-color 0.3s; /* Animation au survol */
+}
+
+.btn-create-quiz:hover {
+  background-color: #45a049; /* Couleur de fond au survol */
 }

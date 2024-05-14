@@ -48,3 +48,18 @@ CREATE TABLE quiz_question
     FOREIGN KEY(question_id) REFERENCES Questions(id),
     FOREIGN KEY(quiz_id) REFERENCES Quiz(id)
 );
+
+CREATE TABLE quiz2
+(
+    id INT PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+create table questions2
+(
+    id SERIAL PRIMARY KEY,
+    question TEXT NOT NULL,
+    quiz2_id SMALLINT,
+    FOREIGN KEY(quiz2_id) REFERENCES quiz2(id) ON DELETE CASCADE,
+    UNIQUE (question)
+);

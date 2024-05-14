@@ -20,5 +20,4 @@ public class AnswerController {
     public List<Answer> listAnswer() {
         return answerService.findAll();
     }
-
 }
