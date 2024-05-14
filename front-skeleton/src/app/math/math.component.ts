@@ -22,12 +22,16 @@ export class MathComponent implements OnInit {
   pseudoEntered: boolean = false;
   quizStarted: boolean = false;
   playerName: string = ""; // New property for player name
+  timeLeft: number = 25; // Initial time for the quiz in seconds
+  timer: any;
+  rankingMessage: string = "";
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
     this.getQuestions();
     this.getAnswers();
+    this.startTimer();
   }
 
   addPlayer(addForm: NgForm): void {
@@ -70,9 +74,9 @@ export class MathComponent implements OnInit {
   }
 
   selectAnswer(answerId: number): void {
-    if (!this.answerSelected) {
+    if (!this.answerSelected  && this.timeLeft > 0) {
       this.selectedAnswerId = answerId;
-      const selectedAnswer = this.mathAnswers.find((answer) => answer.id === answerId);
+      const selectedAnswer = this.mathAnswers.find(answer => answer.id === answerId);
       if (selectedAnswer && selectedAnswer.response_value) {
         this.correctAnswers++;
         this.feedbackMessage = "Vrai !";
@@ -88,6 +92,22 @@ export class MathComponent implements OnInit {
     if (this.currentQuestionIndex === 4) { // Stop at the 5th question (index 4)
       // Show the score box
       this.showScoreBox = true;
+      // Determine the ranking based on the player's score
+      let rankingMessage = "";
+      switch (this.correctAnswers) {
+        case 5:
+          rankingMessage = "Votre classement est premier";
+          break;
+        case 4:
+          rankingMessage = "Votre classement est deuxième";
+          break;
+        // Add more cases for other possible scores
+        default:
+          rankingMessage = "Votre classement est en dehors du top";
+          break;
+      }
+      // Assign the ranking message to a property to display it in the template
+      this.rankingMessage = rankingMessage;
 
       // Call updateBestScore if the user has answered more than 1 question correctly
       if (this.correctAnswers > 1) {
@@ -122,5 +142,15 @@ export class MathComponent implements OnInit {
 
   closeScoreBox(): void {
     this.showScoreBox = false;
+  }
+  startTimer() {
+    this.timer = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.closeScoreBox(); // Call function to finish the quiz when time runs out
+        clearInterval(this.timer); // Stop the timer when time runs out
+      }
+    }, 1000); // Timer updates every second (1000 milliseconds)
   }
 }

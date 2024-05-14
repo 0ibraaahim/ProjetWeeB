@@ -17,6 +17,9 @@
   </button>
 
   <div class="quiz" *ngIf="quizStarted">
+    <div class="timer-box">
+      <p class="timer-text">Time Left: {{ timeLeft }} seconds</p>
+    </div>
     <h2 id="question">{{ mathQuestions[currentQuestionIndex]?.question }}</h2>
     <div id="answer-buttons">
       <button class="btn" *ngFor="let answer of getAnswersByQuestionId(mathQuestions[currentQuestionIndex]?.id)"
@@ -40,7 +43,8 @@
       <p style="font-size: 25px; color: #3A1C71; font-weight: 600; border-bottom: 1px solid #333; padding-bottom: 30px;">
         Votre score est: {{ correctAnswers }} sur 5
       </p>
-      <button class="btn" (click)="closeScoreBox()">OK</button>
+      {{ rankingMessage }}
+
     </div>
   </div>
 </div>

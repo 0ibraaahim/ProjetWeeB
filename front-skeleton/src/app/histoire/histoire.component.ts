@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core"
 import { QuizService } from "../services/quiz.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: "histoire",
@@ -15,9 +16,13 @@ export class HistoireComponent implements OnInit {
   correctAnswers: number = 0;
   answerSelected: boolean = false; // Add property to track if an answer is selected
   showScoreBox: boolean = false;
-  timeLeft: number = 20; // Initial time for the quiz in seconds
+  timeLeft: number = 25; // Initial time for the quiz in seconds
   timer: any;
-
+  pseudo: string = "";
+  pseudoEntered: boolean = false;
+  quizStarted: boolean = false;
+  playerName: string = "";
+  rankingMessage: string = "";
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
@@ -25,7 +30,24 @@ export class HistoireComponent implements OnInit {
     this.getAnswers();
     this.startTimer();
   }
-
+  addPlayer(addForm: NgForm): void {
+    this.quizService.addPlayer(this.pseudo).subscribe(
+      (response: any) => {
+        console.log(response);
+        // Set pseudoEntered to true upon successful submission
+        this.pseudoEntered = true;
+        // Start the quiz
+        this.startQuiz();
+      },
+      (error) => {
+        console.error(error);
+        // Handle errors if necessary
+      }
+    );
+  }
+  startQuiz(): void {
+    this.quizStarted = true;
+  }
   getQuestions(): void {
     this.quizService.getQuestions().subscribe((data) => {
       console.log(data);
@@ -59,18 +81,49 @@ export class HistoireComponent implements OnInit {
   }
 
   nextQuestion(): void {
-    if (this.currentQuestionIndex < this.histoireQuestions.length) {
-      const currentQuestion = this.histoireQuestions[this.currentQuestionIndex];
-      if (currentQuestion.id === 10) {
-        this.showScoreBox = true; // Show the score box when reaching the last question
-      } else {
-        this.selectedAnswerId = null;
-        this.feedbackMessage = "";
-        this.answerSelected = false;
-        this.currentQuestionIndex++;
+    // Check if it's the last question
+    if (this.currentQuestionIndex === 4 || this.histoireQuestions[this.currentQuestionIndex].id === 10) {
+      // Show the score box
+      this.showScoreBox = true;
+      let rankingMessage = "";
+      switch (this.correctAnswers) {
+        case 5:
+          rankingMessage = "Votre classement est premier";
+          break;
+        case 4:
+          rankingMessage = "Votre classement est deuxième";
+          break;
+        // Add more cases for other possible scores
+        default:
+          rankingMessage = "Votre classement est en dehors du top";
+          break;
       }
+      this.rankingMessage = rankingMessage;
+      // Call updateBestScore if the user has answered more than 1 question correctly
+      if (this.correctAnswers > 1) {
+        this.quizService.updateBestScore(this.pseudo, this.correctAnswers).subscribe(
+          (response: any) => {
+            console.log(response);
+            // Handle response if needed
+          },
+          (error) => {
+            console.error(error);
+            // Handle errors if necessary
+          }
+        );
+      }
+    } else {
+      // Increment the current question index to move to the next question
+      this.currentQuestionIndex++;
+
+      // Reset the selected answer and feedback message for the new question
+      this.selectedAnswerId = null;
+      this.feedbackMessage = "";
+      this.answerSelected = false;
     }
   }
+
+
 
   nextButtonText(): string {
     if (this.histoireQuestions[this.currentQuestionIndex]?.id === 10) {

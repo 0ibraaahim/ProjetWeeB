@@ -1,9 +1,22 @@
-<!-- physique.component.html -->
+<!-- math.component.html -->
 
 <div class="app">
   <h1>Bienvenue au quiz de physique-chimie</h1>
-  <div class="quiz">
 
+  <!-- Pseudo input -->
+  <div *ngIf="!pseudoEntered">
+    <form #pseudoForm="ngForm" (ngSubmit)="addPlayer(pseudoForm)">
+      <input type="text" placeholder="Entrez votre pseudo" name="pseudo" [(ngModel)]="pseudo" required>
+      <button class="btn" type="submit">Confirmer</button>
+    </form>
+  </div>
+
+  <!-- Commencer le quiz button -->
+  <button class="btn" (click)="startQuiz()" *ngIf="!quizStarted && pseudoEntered">
+    Commencer le quiz
+  </button>
+
+  <div class="quiz" *ngIf="quizStarted">
     <div class="timer-box">
       <p class="timer-text">Time Left: {{ timeLeft }} seconds</p>
     </div>
@@ -16,7 +29,7 @@
           'correct': selectedAnswerId === answer.id && answer.response_value,
           'wrong': selectedAnswerId === answer.id && !answer.response_value
         }"
-              [disabled]="answerSelected"> <!-- Disable the button if an answer is selected -->
+              [disabled]="answerSelected">
         {{ answer.response }}
       </button>
     </div>
@@ -30,7 +43,7 @@
       <p style="font-size: 25px; color: #3A1C71; font-weight: 600; border-bottom: 1px solid #333; padding-bottom: 30px;">
         Votre score est: {{ correctAnswers }} sur 5
       </p>
-      <button class="btn" (click)="closeScoreBox()">OK</button>
+      {{ rankingMessage }}
     </div>
   </div>
 </div>

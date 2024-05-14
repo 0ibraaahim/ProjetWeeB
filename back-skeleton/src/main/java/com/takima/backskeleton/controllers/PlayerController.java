@@ -27,7 +27,7 @@ public class PlayerController {
 
     @GetMapping("")
     public List<Player> getAllPlayers() {
-        return playerService.getAllPlayers();
+        return playerService.getAllPlayersOrderByBestScoreDesc();
     }
 
 

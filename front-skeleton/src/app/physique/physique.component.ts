@@ -1,7 +1,8 @@
-// physique.component.ts
-
 import { Component, OnInit } from "@angular/core";
 import { QuizService } from "../services/quiz.service";
+import { NgForm } from "@angular/forms";
+import { Player } from "../models/Player.model";
+import { PlayerService } from "../services/Player.service";
 
 @Component({
   selector: "physique",
@@ -15,10 +16,15 @@ export class PhysiqueComponent implements OnInit {
   selectedAnswerId: number | null = null;
   feedbackMessage: string = "";
   correctAnswers: number = 0;
-  answerSelected: boolean = false; // Add property to track if an answer is selected
+  answerSelected: boolean = false;
   showScoreBox: boolean = false;
-  timeLeft: number = 20; // Initial time for the quiz in seconds
+  pseudo: string = "";
+  pseudoEntered: boolean = false;
+  quizStarted: boolean = false;
+  playerName: string = ""; // New property for player name
+  timeLeft: number = 25; // Initial time for the quiz in seconds
   timer: any;
+  rankingMessage: string = "";
 
   constructor(private quizService: QuizService) {}
 
@@ -26,6 +32,27 @@ export class PhysiqueComponent implements OnInit {
     this.getQuestions();
     this.getAnswers();
     this.startTimer();
+  }
+
+  addPlayer(addForm: NgForm): void {
+    this.quizService.addPlayer(this.pseudo).subscribe(
+      (response: any) => {
+        console.log(response);
+        // Set pseudoEntered to true upon successful submission
+        this.pseudoEntered = true;
+        // Start the quiz
+        this.startQuiz();
+      },
+      (error) => {
+        console.error(error);
+        // Handle errors if necessary
+      }
+    );
+  }
+
+
+  startQuiz(): void {
+    this.quizStarted = true;
   }
 
   getQuestions(): void {
@@ -43,11 +70,11 @@ export class PhysiqueComponent implements OnInit {
   }
 
   getAnswersByQuestionId(questionId: number): any[] {
-    return this.physiqueAnswers.filter(answer => answer.question_id === questionId);
+    return this.physiqueAnswers.filter((answer) => answer.question_id === questionId);
   }
 
   selectAnswer(answerId: number): void {
-    if (!this.answerSelected && this.timeLeft>0) { // Only proceed if an answer has not been selected
+    if (!this.answerSelected  && this.timeLeft > 0) {
       this.selectedAnswerId = answerId;
       const selectedAnswer = this.physiqueAnswers.find(answer => answer.id === answerId);
       if (selectedAnswer && selectedAnswer.response_value) {
@@ -56,37 +83,61 @@ export class PhysiqueComponent implements OnInit {
       } else {
         this.feedbackMessage = "Faux :( ";
       }
-      this.answerSelected = true; // Mark that an answer has been selected
+      this.answerSelected = true;
     }
   }
 
   nextQuestion(): void {
-    if (this.currentQuestionIndex < this.physiqueQuestions.length - 1) {
+    // Check if it's the last question
+    if (this.currentQuestionIndex === 4 || this.physiqueQuestions[this.currentQuestionIndex].id === 15) {
+      // Show the score box
+      this.showScoreBox = true;
+      let rankingMessage = "";
+      switch (this.correctAnswers) {
+        case 5:
+          rankingMessage = "Votre classement est premier";
+          break;
+        case 4:
+          rankingMessage = "Votre classement est deuxième";
+          break;
+        // Add more cases for other possible scores
+        default:
+          rankingMessage = "Votre classement est en dehors du top";
+          break;
+      }
+      this.rankingMessage = rankingMessage;
+      // Call updateBestScore if the user has answered more than 1 question correctly
+      if (this.correctAnswers > 1) {
+        this.quizService.updateBestScore(this.pseudo, this.correctAnswers).subscribe(
+          (response: any) => {
+            console.log(response);
+            // Handle response if needed
+          },
+          (error) => {
+            console.error(error);
+            // Handle errors if necessary
+          }
+        );
+      }
+    } else {
+      // Increment the current question index to move to the next question
+      this.currentQuestionIndex++;
+
+      // Reset the selected answer and feedback message for the new question
       this.selectedAnswerId = null;
       this.feedbackMessage = "";
-      this.currentQuestionIndex++;
-      this.answerSelected = false; // Reset answer selection for the next question
-    } else {
-      if (this.physiqueQuestions[this.currentQuestionIndex].id === 15) {
-        this.showScoreBox = true; // Show the score box
-
-      } else {
-        this.showScoreBox = true; // Show the score box
-        this.feedbackMessage = `Votre score est : ${this.correctAnswers} sur ${this.physiqueQuestions.length}`;
-      }
+      this.answerSelected = false;
     }
   }
 
-
   nextButtonText(): string {
-    if (this.physiqueQuestions[this.currentQuestionIndex]?.id === 5) {
+    if (this.physiqueQuestions[this.currentQuestionIndex]?.id === 15) {
       return "Afficher mon score";
     } else {
       return "Question suivante";
     }
   }
 
-  // Method to close the score box
   closeScoreBox(): void {
     this.showScoreBox = false;
   }

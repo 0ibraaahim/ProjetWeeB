@@ -8,11 +8,12 @@ nav {
 }
 
 mat-nav-list {
-  margin-left: 450px;
+  margin-left: 150px; /* Adjust margin as needed */
   display: flex;
   flex-direction: row;
-  width: 400px;
+  width: 800px; /* Adjust width as needed */
 }
+
 
 mat-nav-list a {
   font-size: large;
@@ -21,7 +22,8 @@ mat-nav-list a {
 }
 
 .accueil button.accueil-button,
-.admin button.admin-button {
+.admin button.admin-button,
+.meilleurs-joueurs button.meilleurs-joueurs-button{
   background-color: transparent;
   color: white;
   border: none;
@@ -30,6 +32,7 @@ mat-nav-list a {
 }
 
 .accueil button.accueil-button:hover,
-.admin button.admin-button:hover {
+.admin button.admin-button:hover,
+.meilleurs-joueurs button.meilleurs-joueurs-button:hover {
   transform: scale(1.2);
 }

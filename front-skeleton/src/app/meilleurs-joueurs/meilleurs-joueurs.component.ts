@@ -25,7 +25,8 @@ export class MeilleursJoueursComponent implements OnInit {
   getMeilleursJoueurs(): void {
     this.quizService.getMeilleursJoueurs().subscribe(
       joueurs => {
-        this.joueurs = joueurs;
+
+        this.joueurs = joueurs.slice(0, 5);
       },
       error => {
         console.error('Erreur lors de la récupération des meilleurs joueurs :', error);

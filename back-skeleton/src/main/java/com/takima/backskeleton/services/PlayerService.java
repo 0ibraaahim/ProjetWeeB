@@ -25,8 +25,8 @@ public class PlayerService {
         }
         return tobeupdatedplayer;
     }
-    public List<Player> getAllPlayers() {
-        return playerDao.findAll();
+    public List<Player> getAllPlayersOrderByBestScoreDesc() {
+        return playerDao.findAllByOrderByBestScoreDesc();
     }
 
 }
